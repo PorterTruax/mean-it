@@ -1,4 +1,4 @@
-const mongoose = ('mongoose');
+const mongoose = require('mongoose');
 const Post = require('./post')
 const Comment = require('./comment')
 
