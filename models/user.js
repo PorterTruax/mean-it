@@ -8,7 +8,7 @@ const Comment = require('./comment')
 //(i.e. how to reference a user if they're not the author of a post)
 const userSchema = new mongoose.Schema({
 	name: {type: String, unique: true, required: true},
-	password: {type:String, unique: true, required: true},
+	password: {type:String, required: true},
 	img: {type: String},
 	super: Boolean,
 	posts: [{
