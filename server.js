@@ -8,6 +8,28 @@ const session = require('express-session')
 require ('./db/db.js')
 
 
+//controllers
+const usersController = require('./controllers/usersController')
+const topicsController = require('./controllers/topicsController')
+const postsController = require('./controllers/postsController')
+const commentsController = require('./controllers/commentsController')
+
+
+
+//middleware
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(methodOverride('_method'));
+app.use(session({
+	secret:"SDFASDfe3kfrDFASDFASDFkdsf23123",
+	resave: false,
+	saveUninitialized: false
+}))
+
+
+app.use('/users', usersController)
+app.use('/topics', topicsController)
+app.use('/posts', postsController)
+app.use('/comments', commentsController)
 
 //get app running
 app.listen(3000, () => {
