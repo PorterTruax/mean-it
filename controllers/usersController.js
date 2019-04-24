@@ -26,7 +26,7 @@ router.post('/register', async (req,res) => {
 	try {
 		const createdUser = await User.create(userDbEntry)
 		// console.log(createdUser +"<====== created user");
-
+		
 
 		//this if/else statement isn't happening, we'd like it too
 		if((createdUser.name === "Porter") || (createdUser.name ==="Jacob")){

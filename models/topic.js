@@ -1,4 +1,4 @@
-const mongoose = ('mongoose');
+const mongoose = require('mongoose');
 const Post = require('./post')
 
 
@@ -9,7 +9,7 @@ const topicSchema = new mongoose.Schema({
 	author: {type: String},
 	body: {type: String, required: true},
 	posts: [{
-		type.mongoose.Schema.Types.ObjectId,
+		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Post'
 	}]
 })
