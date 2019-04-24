@@ -40,7 +40,7 @@ router.post('/register', async (req,res) => {
 			req.session.logged = true
 			req.session.usersDbId = createdUser._id;
 			// console.log(req.session +"<====== session object");
-			res.render('topics/index.ejs') 
+			res.redirect('/topics') 
 
 
 		} else{
@@ -48,7 +48,7 @@ router.post('/register', async (req,res) => {
 			req.session.logged = true
 			req.session.usersDbId = createdUser._id;
 			// console.log(req.session +"<====== session object");
-			res.render('topics/index.ejs') 
+			res.redirect('/topics') 
 		}
 
 	}catch (err) {
@@ -75,7 +75,7 @@ router.post('/login', async (req,res) => {
 				req.session.usersDbId = foundUser._id
 
 				console.log("user successfully logged in");
-				res.render('topics/index.ejs')
+				res.redirect('/topics')
 			}
 
 			else{
