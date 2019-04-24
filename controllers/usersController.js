@@ -26,10 +26,30 @@ router.post('/register', async (req,res) => {
 	try {
 		const createdUser = await User.create(userDbEntry)
 		// console.log(createdUser +"<====== created user");
-		req.session.logged = true
-		req.session.usersDbId = createdUser._id;
-		// console.log(req.session +"<====== session object");
-		res.render('topics/index.ejs') 
+
+
+		//this if/else statement isn't happening, we'd like it too
+		if((createdUser.name === "Porter") || (createdUser.name ==="Jacob")){
+			createdUser.super = true
+			createdUser.save()
+
+			console.log(createdUser);
+
+			console.log("is this conditional being followed");
+
+			req.session.logged = true
+			req.session.usersDbId = createdUser._id;
+			// console.log(req.session +"<====== session object");
+			res.render('topics/index.ejs') 
+
+
+		} else{
+
+			req.session.logged = true
+			req.session.usersDbId = createdUser._id;
+			// console.log(req.session +"<====== session object");
+			res.render('topics/index.ejs') 
+		}
 
 	}catch (err) {
 		res.send(err)
