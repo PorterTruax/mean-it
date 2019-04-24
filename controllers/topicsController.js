@@ -35,5 +35,20 @@ router.get('/', async (req,res)=> {
 })
 
 
+router.get('/new', async(req, res) => {
+	try{
+
+	const foundUser = await User.findOne({_id: req.session.usersDbId})
+
+	res.render('topics/new.ejs',{
+		user: foundUser
+	})
+
+	} catch(err) {
+		res.send()
+	}
+})
+
+
 //exportRouter
 module.exports = router
