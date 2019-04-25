@@ -1,9 +1,41 @@
 const express = require('express');
 const router = express.Router();
-
 const User = require('../models/user')
 const Topic = require('../models/topic')
 const Post = require('../models/post')
+
+
+const Comment = require('../models/comment')
+
+router.post('/:id', async(req,res) => {
+
+	try{
+
+		const createdComment = await Comment.create(req.body)
+		console.log("THE BELOW IS THE CREATED COMMENT");
+		console.log(createdComment);
+	
+		const foundPost = await Post.findById(req.params.id)
+	
+		const foundUser = await User.findById(req.session.usersDbId)
+		
+		foundUser.comments.push(createdComment)
+		
+		foundPost.comments.push(createdComment)
+	
+		await foundUser.save()
+	
+		await foundPost.save()
+	
+	
+		res.redirect('/posts/' + req.params.id);
+		
+	} catch(err) {
+		res.send(err)
+	}
+
+})
+
 
 
 
@@ -82,7 +114,7 @@ router.delete('/:id', async(req,res) => {
 router.get('/:id', async (req,res) => {
 	try {
 
-		const foundPost = await Post.findById(req.params.id)
+		const foundPost = await Post.findById(req.params.id).populate('comments')
 		const foundUser = await User.findById(req.session.usersDbId)
 
 		const foundAuthor = await User.findOne({"posts": req.params.id})
