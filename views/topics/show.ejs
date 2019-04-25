@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Show Page</title>
+</head>
+<body>
+
+	<h1>Topic Page!</h1>
+
+	<%=topic.name%><br>
+
+	<h2>What are we talking about?</h2><br>
+		
+		<h3><%=topic.name%></h3><br>
+	
+
+	<div class="container">
+		
+		<%=topic.body%>
+	
+	</div>
+
+
+
+	<%if(user.super === true) {%>
+
+	<h2><a href="/topics/<%=topic._id%>/edit">EDIT TOPIC</h2></a>
+
+	<%}%>
+
+</body>
+</html>

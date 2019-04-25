@@ -72,10 +72,34 @@ router.get('/new', async(req, res) => {
 	}
 })
 
+
+//GET TOPIC EDIT PAGE
+
+router.get('/:id/edit', (req,res) => {
+	res.send('test')
+})
+
+
+
 // GET TOPIC SHOW PAGE
 
-router.get('/:id', (req,res) => {
-	res.send('route is hitting')
+router.get('/:id', async (req,res) => {
+	try {
+
+		const foundTopic = await Topic.findOne({_id: req.params.id})
+		
+		const foundUser = await User.findOne({_id: req.session.usersDbId})
+
+		console.log(foundUser);
+
+		res.render('topics/show.ejs', {
+			topic: foundTopic,
+			user: foundUser
+		})
+
+	} catch(err){
+		res.send(err)
+	}
 })
 
 
