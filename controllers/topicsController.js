@@ -117,8 +117,52 @@ router.delete('/:id', async (req,res) => {
 //PUT ROUTE
 
 
-router.put('/:id', (req,res) => {
-	res.send('route hitting')
+router.put('/:id', async (req,res) => {
+
+	//break req.body into its components
+	//because the form does not update the posts array
+
+	const updatedAuthor = req.body.author
+	console.log(req.body.author);
+
+	const updatedName = req.body.name
+	console.log(req.body.name);
+	const updatedImg = req.body.img
+
+	console.log(req.body.img);
+	const updatedDate = req.body.date
+
+	console.log(req.body.date);
+
+	const updatedBody = req.body.body
+
+	console.log(req.body.body);
+
+	try {
+
+		const foundTopic = await Topic.findById({_id: req.params.id})
+
+		console.log(foundTopic);
+
+		foundTopic.author = updatedAuthor
+
+		foundTopic.name = updatedName
+
+		foundTopic.img = updatedImg
+
+		// foundTopic.date = updatedDate
+
+		foundTopic.body = updatedBody
+
+		const savedTopic = await foundTopic.save()
+
+		console.log(savedTopic);
+
+		res.redirect('/topics/'+req.params.id)
+
+	} catch(err) {
+		res.send(err)
+	}
 })
 
 
