@@ -34,6 +34,13 @@ router.get('/', async (req,res)=> {
 	}
 })
 
+router.post('/', (req,res) => {
+	//our post route needs to create a topic
+
+	res.send('route hits')
+
+})
+
 
 router.get('/new', async(req, res) => {
 	try{
@@ -48,6 +55,8 @@ router.get('/new', async(req, res) => {
 		res.send()
 	}
 })
+
+
 
 
 //exportRouter
