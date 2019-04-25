@@ -30,7 +30,8 @@
 		<ul>
 			<%post.comments.forEach((comment) => { %>
 				
-				<li><%=comment.body%></li>
+
+				<li><%=comment.author%> says "<%=comment.body%>"</li>
 		
 			<%})%>
 		</ul>

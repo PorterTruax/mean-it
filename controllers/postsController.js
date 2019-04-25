@@ -12,12 +12,16 @@ router.post('/:id', async(req,res) => {
 	try{
 
 		const createdComment = await Comment.create(req.body)
-		console.log("THE BELOW IS THE CREATED COMMENT");
-		console.log(createdComment);
+		// console.log("THE BELOW IS THE CREATED COMMENT");
+		// console.log(createdComment);
+
+		const foundUser = await User.findById(req.session.usersDbId)
+
+		createdComment.author = foundUser.name
+
+		await createdComment.save()
 	
 		const foundPost = await Post.findById(req.params.id)
-	
-		const foundUser = await User.findById(req.session.usersDbId)
 		
 		foundUser.comments.push(createdComment)
 		
@@ -119,8 +123,6 @@ router.get('/:id', async (req,res) => {
 
 		const foundAuthor = await User.findOne({"posts": req.params.id})
 		console.log(foundAuthor);
-
-
 
 		console.log("\n", "here is the found post\n")
 		console.log(foundPost);

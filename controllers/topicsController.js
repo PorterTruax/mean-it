@@ -4,6 +4,12 @@ const User = require('../models/user')
 const Topic = require('../models/topic')
 const Post = require('../models/post')
 
+// router.use((req,res,next) => {
+// 	if(!req.session.loggedIn) {
+// 		res.redirect('/')
+// 	}
+// })
+
 
 //GET INDEX ROUTE
 router.get('/', async (req,res)=> {
