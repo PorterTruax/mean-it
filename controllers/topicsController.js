@@ -188,10 +188,65 @@ router.get('/:id/edit', async (req,res) => {
 	}
 })
 
+//CREATE NEW POST ROUTE.....
+
+router.get('/:id/new', async(req,res) => {
+	res.send('Successful')
+})
+
+
+//REFERENCE CODE FOR WHAT WE'RE ABOUT TO DO
+// FIRST BUILD A NEW PAGE FOR THE TOPIC ID
+
+// BUILD A POST ROUTE FOR THE POST TO BE POSTED TO THE TOPIC
+
+
+// router.get('/new', async (req,res) => {
+
+// 	const findAllTopics = await Topic.find({})
+
+// 	res.render('posts/new.ejs', {
+// 		topics: findAllTopics
+// 	})
+// })
+
+
+// router.post('/', async (req,res) => {
+
+// 	try {
+
+// 		const createdPost = await Post.create(req.body)
+// 		console.log(createdPost + "<==== this is the found post");
+
+// 		const foundTopic = await Topic.findOne({_id: req.body.topicId})
+// 		console.log(foundTopic + "<=== this is the found topic where the posts belongs")
+
+
+// 		console.log("\n", "here is created post\n")
+// 			console.log(createdPost)
+
+// 		console.log("\n\nhere is foundTopic:")
+// 		console.log(foundTopic.posts)
+		
+// 		foundTopic.posts.push(createdPost)
+// 		console.log("\nhere is foundTopic after we pshed")
+
+// 		console.log(foundTopic)
+
+// 		await foundTopic.save()
+
+// 		console.log(foundTopic + "<===== post pushed into the foundtopic");
+
+// 		res.redirect('/topics/' + req.body.topicId)
+
+// 	} catch(err) {
+// 		res.send(err)
+// 	}
+
+// })
 
 
 // GET TOPIC SHOW PAGE
-
 router.get('/:id', async (req,res) => {
 	try {
 
@@ -210,6 +265,7 @@ router.get('/:id', async (req,res) => {
 		res.send(err)
 	}
 })
+
 
 
 
