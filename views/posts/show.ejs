@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Show Page</title>
+</head>
+<body>
+
+	<h1>Show Page for <%=post.name%></h1>
+
+	<br>
+	<br>
+
+	<p><%=post.body%></p>
+
+	<%if (user.super === true) {%>
+
+	<a href="/posts/<%=post._id%>/edit">Edit Post</a>
+
+		<%}%>
+
+</body>
+</html>
