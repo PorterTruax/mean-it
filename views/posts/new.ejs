@@ -7,19 +7,9 @@
 
 <h1>Create New Post</h1>
 
-	<form action="/posts" method="POST">
+	<form action="/topics/<%=topic._id%>" method="POST">
 
-		<!-- user selects topic. ideally this would be auto selected for them.. something to come back to -->
-
-
-
-		Select Topic: <select name="topicId">
-			
-			<% for(let i=0; i <topics.length; i++) {%>
-
-			<option value="<%=topics[i]._id%>"><%=topics[i].name%></option>
-
-			<%}%>
+		<h1>Topic: <%=topic.name%></h1>
 
 		</select><br>
 

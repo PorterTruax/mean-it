@@ -19,7 +19,20 @@
 	
 	</div>
 
+	<h1>NEW FREAKING POSTS</h1>
 
+	<ul>
+		<%for (let i=0; i <topic.posts.length; i++) {%>
+		
+<!-- 		These are links to /posts/topic.posts[i]._id
+		//these are the show pages for posts -->
+
+
+		<li><a href="/posts/<%=topic.posts[i]._id%>"><%=topic.posts[i].name%></a></li>
+
+		<% } %>
+
+	</ul>
 
 
 	<h2><a href="/topics/<%=topic._id%>/new">Create New Post</a></h2>

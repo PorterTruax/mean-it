@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/user')
 const Topic = require('../models/topic')
+const Post = require('../models/post')
 
 
 //GET INDEX ROUTE
@@ -191,7 +192,12 @@ router.get('/:id/edit', async (req,res) => {
 //CREATE NEW POST ROUTE.....
 
 router.get('/:id/new', async(req,res) => {
-	res.send('Successful')
+	
+	const foundTopic = await Topic.findOne({_id: req.params.id})
+
+	res.render('posts/new.ejs', {
+		topic: foundTopic
+	})
 })
 
 
@@ -200,61 +206,63 @@ router.get('/:id/new', async(req,res) => {
 
 // BUILD A POST ROUTE FOR THE POST TO BE POSTED TO THE TOPIC
 
+router.post('/:id', async (req,res) => {
+	try {
 
-// router.get('/new', async (req,res) => {
+		console.log("Did we get here?");
+		console.log(req.body);
 
-// 	const findAllTopics = await Topic.find({})
+		const createdPost = await Post.create(req.body)
+		console.log(createdPost + "<==== this is the created post");
 
-// 	res.render('posts/new.ejs', {
-// 		topics: findAllTopics
-// 	})
-// })
-
-
-// router.post('/', async (req,res) => {
-
-// 	try {
-
-// 		const createdPost = await Post.create(req.body)
-// 		console.log(createdPost + "<==== this is the found post");
-
-// 		const foundTopic = await Topic.findOne({_id: req.body.topicId})
-// 		console.log(foundTopic + "<=== this is the found topic where the posts belongs")
+		const foundTopic = await Topic.findById(req.params.id)
+		console.log(foundTopic + "<=== this is the found topic where the posts belongs")
 
 
-// 		console.log("\n", "here is created post\n")
-// 			console.log(createdPost)
+		console.log("\n", "here is created post\n")
+			console.log(createdPost)
 
-// 		console.log("\n\nhere is foundTopic:")
-// 		console.log(foundTopic.posts)
+		console.log("\n\nhere is foundTopic:")
+		console.log(foundTopic.posts)
 		
-// 		foundTopic.posts.push(createdPost)
-// 		console.log("\nhere is foundTopic after we pshed")
+		foundTopic.posts.push(createdPost)
+		console.log("\nhere is foundTopic after we pshed")
 
-// 		console.log(foundTopic)
+		console.log(foundTopic)
 
-// 		await foundTopic.save()
+		await foundTopic.save()
 
-// 		console.log(foundTopic + "<===== post pushed into the foundtopic");
+		console.log(foundTopic + "<===== post pushed into the foundtopic");
 
-// 		res.redirect('/topics/' + req.body.topicId)
+		res.redirect('/topics/' + req.params.id)
 
-// 	} catch(err) {
-// 		res.send(err)
-// 	}
+	} catch(err) {
+		res.send(err)
+	}
 
-// })
+})
 
 
 // GET TOPIC SHOW PAGE
 router.get('/:id', async (req,res) => {
 	try {
+		// const query = Topic.findOne({_id: req.params.id}).exec()
+		
+		// console.log(query)
 
-		const foundTopic = await Topic.findOne({_id: req.params.id})
+		const foundTopic = await Topic.findOne({_id: req.params.id}).populate('posts')
+
+		// await foundTopic.populate('posts')
+		console.log("<===== found topic w/ posts")
+		console.log(foundTopic);
+
+		// await foundTopic.save()
+
+		console.log(foundTopic +"<====== found topic saved");
 		
 		const foundUser = await User.findOne({_id: req.session.usersDbId})
 
-		console.log(foundUser);
+		console.log(foundUser + "<==== found user");
 
 		res.render('topics/show.ejs', {
 			topic: foundTopic,
