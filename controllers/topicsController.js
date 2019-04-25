@@ -114,6 +114,13 @@ router.delete('/:id', async (req,res) => {
 
 })
 
+//PUT ROUTE
+
+
+router.put('/:id', (req,res) => {
+	res.send('route hitting')
+})
+
 
 //GET TOPIC EDIT PAGE
 
