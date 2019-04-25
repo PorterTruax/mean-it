@@ -73,10 +73,68 @@ router.get('/new', async(req, res) => {
 })
 
 
+router.delete('/:id', async (req,res) => {
+
+	try{
+
+		const foundUser = await User.findOne({_id: req.session.usersDbId})
+
+		console.log(req.session.usersDbId +"<=== this is the session object, userDBID");
+
+		console.log(foundUser + " <==== this is the found user");
+
+		const deletedTopic = await Topic.findByIdAndRemove({_id: req.params.id})
+
+		console.log(deletedTopic + " <==== this is the topic to be deleted");
+
+		// const findAllPosts = await Post.findMany({_id: {$in: deletedTopic.posts}})
+
+		// if (findAllPosts !== null){
+
+		// 	const deletedPosts = await Post.deleteMany({_id: {$in: deletedTopic.posts}})
+
+		// 	res.redirect('/topics')
+		// }
+
+		// else {
+
+		// 	res.redirect('/topics')
+
+		// }
+
+		// const deletedPosts = await Post.deleteMany({_id: {$in: deletedTopic.posts}})
+
+		// console.log(deletedPosts +" <======== these are the deleted posts");
+
+		res.redirect('/topics')
+
+	}catch (err) {
+		res.send(err)
+	}
+
+})
+
+
 //GET TOPIC EDIT PAGE
 
-router.get('/:id/edit', (req,res) => {
-	res.send('test')
+router.get('/:id/edit', async (req,res) => {
+	try {
+
+		const foundTopic = await Topic.findOne({_id: req.params.id})
+		
+		const foundUser = await User.findOne({_id: req.session.usersDbId})
+
+		console.log(foundUser);
+		console.log(req.session.usersDbId);
+
+		res.render('topics/edit.ejs', {
+			topic: foundTopic,
+			user: foundUser
+		})
+
+	} catch(err) {
+		res.send(err)
+	}
 })
 
 

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Edit Topic Page</title>
+</head>
+<body>
+<h1>Edit</h1>
+	
+	<form action="/topics/<%=topic._id%>?_method=PUT" method="POST">
+		
+		Name:<input type="text" name="name" value="<%=topic.name%>"><br>
+		<!-- return to date to determine why date is not displaying -->
+		
+		Date:<input type="date" name="date" value="<%=topic.date%>"><br>
+		
+		Img:<input type="text" name="img" value="<%=topic.img%>"><br>
+		
+		Author:<input type="text" name="author" value="<%=user.name%>"><br>
+		
+		Topic: <br><textarea name="body"><%=topic.body%></textarea><br/>
+		<button>Edit</button>
+	</form>
+
+	<form action="/topics/<%=topic._id%>?_method=DELETE" method="POST">
+		<button>Delete Topic</button>
+	</form>
+
+</body>
+</html>
