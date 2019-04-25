@@ -55,13 +55,20 @@ router.delete('/:id', async(req,res) => {
 
 		const foundPost = await Post.findByIdAndRemove(req.params.id)
 
-		// const foundUser = await User.findOne({_id: req.session.usersDbId})
+		const foundUser = await User.findOne({_id: req.session.usersDbId})
 
 		const foundTopic = await Topic.findOne({'posts': req.params.id})
+
+		await foundUser.posts.remove(req.params.id)
+		await foundUser.save()
+		console.log(foundUser + "<=== the post is gone from the user");
 
 		await foundTopic.posts.remove(req.params.id)
 
 		await foundTopic.save()
+
+		console.log(foundTopic + "<=== the post is gone from the topics");
+
 
 		res.redirect('/topics/' + foundTopic._id);
 
@@ -78,10 +85,16 @@ router.get('/:id', async (req,res) => {
 		const foundPost = await Post.findById(req.params.id)
 		const foundUser = await User.findById(req.session.usersDbId)
 
+		const foundAuthor = await User.findOne({"posts": req.params.id})
+		console.log(foundAuthor);
+
+
+
 		console.log("\n", "here is the found post\n")
 		console.log(foundPost);
 
 		res.render('posts/show.ejs', {
+			author: foundAuthor,
 			post: foundPost,
 			user: foundUser
 		})

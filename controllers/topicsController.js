@@ -78,34 +78,25 @@ router.delete('/:id', async (req,res) => {
 
 	try{
 
+		const topicToBeDeleted = await Topic.findOne({_id: req.params.id})
+
+		console.log("The below is an array with the ids of the posts to be deleted");
+		console.log(topicPostsToBeDeleted);
+
 		const foundUser = await User.findOne({_id: req.session.usersDbId})
 
-		console.log(req.session.usersDbId +"<=== this is the session object, userDBID");
+		// const usersToHavePostsRemoved = await User.findMany({"posts": {$in: topicPostsToBeDeleted}})
 
-		console.log(foundUser + " <==== this is the found user");
+		// console.log(req.session.usersDbId +"<=== this is the session object, userDBID");
+
+		// console.log(foundUser + " <==== this is the found user");
 
 		const deletedTopic = await Topic.findByIdAndRemove({_id: req.params.id})
-
 		console.log(deletedTopic + " <==== this is the topic to be deleted");
 
-		// const findAllPosts = await Post.findMany({_id: {$in: deletedTopic.posts}})
+		const deletedPosts = await Post.deleteMany({_id: {$in: deletedTopic.posts}})
 
-		// if (findAllPosts !== null){
-
-		// 	const deletedPosts = await Post.deleteMany({_id: {$in: deletedTopic.posts}})
-
-		// 	res.redirect('/topics')
-		// }
-
-		// else {
-
-		// 	res.redirect('/topics')
-
-		// }
-
-		// const deletedPosts = await Post.deleteMany({_id: {$in: deletedTopic.posts}})
-
-		// console.log(deletedPosts +" <======== these are the deleted posts");
+		console.log(deletedPosts);
 
 		res.redirect('/topics')
 
@@ -194,9 +185,11 @@ router.get('/:id/edit', async (req,res) => {
 router.get('/:id/new', async(req,res) => {
 	
 	const foundTopic = await Topic.findOne({_id: req.params.id})
+	const foundUser = await User.findById(req.session.usersDbId)
 
 	res.render('posts/new.ejs', {
-		topic: foundTopic
+		topic: foundTopic,
+		author: foundUser.name
 	})
 })
 
