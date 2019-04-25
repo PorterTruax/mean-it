@@ -34,10 +34,21 @@ router.get('/', async (req,res)=> {
 	}
 })
 
-router.post('/', (req,res) => {
+router.post('/', async(req,res) => {
 	//our post route needs to create a topic
+	try{
 
-	res.send('route hits')
+		const foundUser = await User.findOne({_id: req.session.usersDbId})
+
+		const createdTopic = await Topic.create(req.body)
+
+		console.log(createdTopic);
+
+		res.redirect('/topics')
+
+	} catch(err){
+		res.send(err)
+	}
 
 })
 
