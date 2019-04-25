@@ -205,28 +205,29 @@ router.get('/:id/new', async(req,res) => {
 // FIRST BUILD A NEW PAGE FOR THE TOPIC ID
 
 // BUILD A POST ROUTE FOR THE POST TO BE POSTED TO THE TOPIC
-
 router.post('/:id', async (req,res) => {
 	try {
 
-		console.log("Did we get here?");
-		console.log(req.body);
-
 		const createdPost = await Post.create(req.body)
-		console.log(createdPost + "<==== this is the created post");
+		// console.log(createdPost + "<==== this is the created post");
 
 		const foundTopic = await Topic.findById(req.params.id)
-		console.log(foundTopic + "<=== this is the found topic where the posts belongs")
+		// console.log(foundTopic + "<=== this is the found topic where the posts belongs")
 
+		const foundUser = await User.findById(req.session.usersDbId)
+		console.log(foundUser);
 
-		console.log("\n", "here is created post\n")
-			console.log(createdPost)
+		foundUser.posts.push(createdPost)
+		await foundUser.save()
+		
+		console.log("\n", "here is the user including the posts\n")
+			console.log(foundUser)
 
-		console.log("\n\nhere is foundTopic:")
-		console.log(foundTopic.posts)
+		// console.log("\n\nhere is foundTopic:")
+		// console.log(foundTopic.posts)
 		
 		foundTopic.posts.push(createdPost)
-		console.log("\nhere is foundTopic after we pshed")
+		// console.log("\nhere is foundTopic after we pshed")
 
 		console.log(foundTopic)
 
