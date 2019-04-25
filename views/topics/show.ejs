@@ -13,7 +13,6 @@
 		
 		<h3><%=topic.name%></h3><br>
 	
-
 	<div class="container">
 		
 		<%=topic.body%>
@@ -22,6 +21,8 @@
 
 
 
+
+	<h2><a href="/posts/new">Create New Post</a></h2>
 	<%if(user.super === true) {%>
 
 	<h2><a href="/topics/<%=topic._id%>/edit">EDIT TOPIC</h2></a>
