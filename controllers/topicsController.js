@@ -34,6 +34,8 @@ router.get('/', async (req,res)=> {
 	}
 })
 
+
+//POST NEW ITEM
 router.post('/', async(req,res) => {
 	//our post route needs to create a topic
 	try{
@@ -53,18 +55,27 @@ router.post('/', async(req,res) => {
 })
 
 
+//GET NEW PAGE
 router.get('/new', async(req, res) => {
 	try{
 
-	const foundUser = await User.findOne({_id: req.session.usersDbId})
+		const foundUser = await User.findOne({_id: req.session.usersDbId})
 
-	res.render('topics/new.ejs',{
-		user: foundUser
-	})
+		res.render('topics/new.ejs', {
+			
+			user: foundUser
+		
+		})
 
 	} catch(err) {
 		res.send()
 	}
+})
+
+// GET TOPIC SHOW PAGE
+
+router.get('/:id', (req,res) => {
+	res.send('route is hitting')
 })
 
 
