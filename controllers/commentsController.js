@@ -6,8 +6,20 @@ const Post = require('../models/post')
 const Comment = require('../models/comment')
 
 
-router.delete('/:id', (req,res) => {
-	res.send("Test route")
+router.delete('/:id', async (req,res,next) => {
+
+	try{
+
+		const foundPost = await Post.findOne({'comments':req.params.id})
+
+		const foundComment = await Comment.findByIdAndRemove(req.params.id);
+
+		res.redirect('/posts/'+foundPost._id)
+
+	}catch (err) {
+		next(err)
+	}
+
 })
 
 
