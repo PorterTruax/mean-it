@@ -1,11 +1,25 @@
 <%- include ../partials/header.ejs%>
 
-	<h1>Show Page for <%=post.name%></h1>
-	<h3>by <%=author.name%></h3>
 
-	<br>
-	<br>
-	<p><%=post.body%></p>
+
+<div class="container">
+	<div class="h2 text-center mb-0">
+		<%=post.name%>
+	</div>
+</div>
+
+
+	<div class="h6 text-center mb-0">
+		by <%=author.name%>
+	</div>
+
+<div class="p-3 mt-0">
+	<div class="p-4">
+	<article>
+		<%=post.body%>
+	</article>
+	</div>
+</div>
 
 	<%if (user.super === true) {%>
 
@@ -13,21 +27,11 @@
 
 		<%}%>
 
-
-	<form action="/posts/<%=post._id%>" method="POST">
-		<textarea type="text" name="body" placeholder="thoughts?"></textarea><br>
-		<button>Comment</button>
-	</form>
-
-
-	<br>
-	<h2>Comments</h2>
+<div class="container">
 		<ul>
 			<%post.comments.forEach((comment) => { %>
-				
 
 				<li><%=comment.author%> says "<%=comment.body%>"</li>
-
 					<%if(user.super === true) {%>
 
 					<form action="/comments/<%=comment._id%>?_method=DELETE" method="POST">
@@ -38,5 +42,12 @@
 		
 			<%})%>
 		</ul>
+</div>
+
+	<form action="/posts/<%=post._id%>" method="POST">
+		<textarea type="text" name="body" placeholder="thoughts?"></textarea><br>
+		<button>Comment</button>
+	</form>
+
 
 <%- include ../partials/footer.ejs%>

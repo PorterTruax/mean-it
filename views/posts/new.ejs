@@ -1,18 +1,37 @@
 <%- include ../partials/header.ejs%>
-<h1>Create New Post</h1>
 
-	<form action="/topics/<%=topic._id%>" method="POST">
+	<div class="container">
+		<div class="h1 text-center text-success">	
+			Create New Post
+		</div>
+	</div>
 
-		<h1>Topic: <%=topic.name%></h1>
 
-		</select><br>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-5 mx-auto">
+				<div class="border border-dark bg-light rounded mx-auto">
+					<div class="mb-2">
+						<div class="h3 col-md-12 text-center">
+							<%=topic.name%>
+						</div>
+					</div>
 
-		Name: <input type="text" name="name"><br>
-		Author: <input type="text" name="author" value="<%=author%>">
-		Date: <input type="date" name="date"><br>
-		Post: <br><textarea name="body" placeholder="What do you want to say?"></textarea><br/>
+					<form action="/topics/<%=topic._id%>" method="POST" class="text-center p-1">
+			
+			
+					Name: <input type="text" name="name" class="d-block mx-auto">
 
-		<button>Create Post</button>
-	</form>
+					Author: <input type="text" name="author" value="<%=author%>" class="d-block mx-auto">
+
+					Date: <input type="date" name="date" class="d-block mx-auto">
+
+					Post: <br><textarea name="body" placeholder="What do you want to say?" class="w-75"></textarea>
+			
+					<button class="mt-1 d-block mx-auto bg-warning">Create Post</button>
+					</form>
+			</div>
+		</div>
+	</div>
 
 <%- include ../partials/footer.ejs%>
