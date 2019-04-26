@@ -6,6 +6,10 @@ const Post = require('../models/post')
 const Comment = require('../models/comment')
 
 
+router.delete('/:id', (req,res) => {
+	res.send("Test route")
+})
+
 
 //exportRouter
 module.exports = router

@@ -80,14 +80,14 @@ router.get('/new', async(req, res) => {
 })
 
 
-router.delete('/:id', async (req,res) => {
+router.delete('/:id', async (req,res, next) => {
 
 	try{
 
 		const topicToBeDeleted = await Topic.findOne({_id: req.params.id})
 
 		console.log("The below is an array with the ids of the posts to be deleted");
-		console.log(topicPostsToBeDeleted);
+	
 
 		const foundUser = await User.findOne({_id: req.session.usersDbId})
 
@@ -107,7 +107,7 @@ router.delete('/:id', async (req,res) => {
 		res.redirect('/topics')
 
 	}catch (err) {
-		res.send(err)
+		next(err)
 	}
 
 })

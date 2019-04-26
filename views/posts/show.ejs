@@ -32,6 +32,14 @@
 				
 
 				<li><%=comment.author%> says "<%=comment.body%>"</li>
+
+					<%if(user.super === true) {%>
+
+					<form action="/comments/<%=comment._id%>?_method=DELETE" method="POST">
+						<button>DELETE This Comment</button>
+					</form>
+					
+					<%}%>
 		
 			<%})%>
 		</ul>
