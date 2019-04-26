@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Show Page</title>
-</head>
-<body>
+<%- include ../partials/header.ejs%>
 
 	<h1>Show Page for <%=post.name%></h1>
 	<h3>by <%=author.name%></h3>
@@ -44,5 +39,4 @@
 			<%})%>
 		</ul>
 
-</body>
-</html>
+<%- include ../partials/footer.ejs%>

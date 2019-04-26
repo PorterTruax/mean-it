@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>New Post</title>
-</head>
-<body>
-
+<%- include ../partials/header.ejs%>
 <h1>Create New Post</h1>
 
 	<form action="/topics/<%=topic._id%>" method="POST">
@@ -21,5 +15,4 @@
 		<button>Create Post</button>
 	</form>
 
-</body>
-</html>
+<%- include ../partials/footer.ejs%>

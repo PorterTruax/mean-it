@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Topics Page</title>
-	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.css">
-</head>
-<body>
+<%- include ../partials/header.ejs%>
 
 <h1>Welcome to the topics page!</h1>
 
@@ -17,12 +11,11 @@
 	<ul>
 		<%topics.forEach((topic) => { %>
 
-		<li><a href="topics/<%=topic._id%>"><%=topic.name%></li>
+		<li><a href="topics/<%=topic._id%>"><%=topic.name%></a></li>
 
 		<% })%>
 
 	</ul>
 
 
-</body>
-</html>
+<%- include ../partials/footer.ejs%>

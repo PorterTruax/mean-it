@@ -1,9 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Edit Topic Page</title>
-</head>
-<body>
+<%- include ../partials/header.ejs%>
+
 <h1>Edit</h1>
 	
 	<form action="/topics/<%=topic._id%>?_method=PUT" method="POST">
@@ -25,5 +21,4 @@
 		<button>Delete Topic</button>
 	</form>
 
-</body>
-</html>
+<%- include ../partials/footer.ejs%>

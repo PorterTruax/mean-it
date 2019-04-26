@@ -25,6 +25,7 @@ app.use(session({
 	saveUninitialized: false
 }))
 
+app.use(express.static(__dirname+ '/client'))
 
 app.use('/users', usersController)
 app.use('/topics', topicsController)
