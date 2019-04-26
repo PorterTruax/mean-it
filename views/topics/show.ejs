@@ -1,33 +1,57 @@
 <%- include ../partials/header.ejs%>
 
-	<h1>Topic Page!</h1>
-
+<div class="text-center h1">
 	<%=topic.name%><br>
+</div>
 
-	<h2>What are we talking about?</h2><br>
-		
-		<h3><%=topic.name%></h3><br>
+	<div class="text-center h3" style="text-decoration: underline">
+		What are we talking about?
+	</div>
 	
-	<div class="container">
+	<div class="text-center h6">
 		
 		<%=topic.body%>
-	
 	</div>
 
-	<h1>NEW FREAKING POSTS</h1>
+	Posts
+
+
+
+<div class="container">
+	<div class="row">
+		<ul class="list-group text-center w-50 m-auto list-group-flush">
+			<%topics.forEach((topic) => { %>
+				
+				<div class="">
+					<li class="list-group-item-info list-group-item-action my-2" style="list-style-type:none	"><a href="topics/<%=topic._id%>" class="text-danger" style="text-decoration: none"><%=	topic.name%>
+					<br>
+					<p class="text-success"><%=topic.body%></p>
+					</li>
+					</a>
+				</div>
+			
+			
+			<% })%>
+		</ul>
+	</div>
+</div>
+
 
 	<ul>
-		<%for (let i=0; i <topic.posts.length; i++) {%>
-		
+		<%for (let i=0; i <topic.posts.length; i++) {%>	
 <!-- 		These are links to /posts/topic.posts[i]._id
 		//these are the show pages for posts -->
-
-
 		<li><a href="/posts/<%=topic.posts[i]._id%>"><%=topic.posts[i].name%></a></li>
 
 		<% } %>
-
 	</ul>
+
+
+
+
+
+
+
 
 
 	<h2><a href="/topics/<%=topic._id%>/new">Create New Post</a></h2>

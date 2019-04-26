@@ -1,21 +1,39 @@
 <%- include ../partials/header.ejs%>
 
-<h1>Welcome to the topics page!</h1>
+	<div class="text-center font-weight-bold font-italic">
+		What do you want to know about?
+	</div>
 
+<div class="container">
+	<div class="row">
+		<ul class="list-group text-center w-50 m-auto list-group-flush">
+			<%topics.forEach((topic) => { %>
+				
+				<div class="">
+					<li class="list-group-item-info list-group-item-action my-2" style="list-style-type:none	"><a href="topics/<%=topic._id%>" class="text-danger" style="text-decoration: none"><%=	topic.name%>
+					<br>
+					<p class="text-success"><%=topic.body%></p>
+					</li>
+					</a>
+				</div>
+			
+			
+			<% })%>
+		</ul>
+	</div>
+</div>
+
+
+
+
+
+<div class="text-center"
 	<%if(user.super === true) {%>
 
 	<h2><a href="/topics/new">CREATE TOPIC</h2></a>
 
 	<%}%>
-
-	<ul>
-		<%topics.forEach((topic) => { %>
-
-		<li><a href="topics/<%=topic._id%>"><%=topic.name%></a></li>
-
-		<% })%>
-
-	</ul>
+</div>
 
 
 <%- include ../partials/footer.ejs%>
