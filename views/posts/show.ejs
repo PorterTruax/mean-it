@@ -28,26 +28,59 @@
 		<%}%>
 
 <div class="container">
-		<ul>
-			<%post.comments.forEach((comment) => { %>
+	<div class="row">
+		<ul class="list-group text-center w-100 list-group-flush">
+			<%post.comments.forEach((comment, i) => { %>
 
-				<li><%=comment.author%> says "<%=comment.body%>"</li>
-					<%if(user.super === true) {%>
+			<%if (i%2 === 0) {%>
+				<li style="list-style-type:none;" class="bub">
+					<div class="list-group-item-info my-2 rounded" id="speech-bubble" style="float:left">
+					
+						<div class="text-danger"><%=comment.author%>:</div> "<%=comment.body%>"
+					
+					</div>
+				</li>
+	
+				<%}%>
+
+			<%if (i%2 !== 0) { %>
+
+				<li style="list-style-type:none;" class="bub">
+
+				
+					<div class="list-group-item-info my-2 rounded bub" id="speech-bubble2" style="float:right">
+						
+						<div class="text-warning"><%=comment.author%>:</div> "<%=comment.body%>"
+						
+					</div>	
+				</li>
+
+			<%}%>
+
+
+				<%if(user.super === true) {%>
 
 					<form action="/comments/<%=comment._id%>?_method=DELETE" method="POST">
-						<button>DELETE This Comment</button>
+						<button id="makeButtonSmaller">Delete</button>
 					</form>
 					
 					<%}%>
 		
 			<%})%>
 		</ul>
+	</div>
 </div>
 
-	<form action="/posts/<%=post._id%>" method="POST">
-		<textarea type="text" name="body" placeholder="thoughts?"></textarea><br>
-		<button>Comment</button>
-	</form>
-
+<div class="container">
+	<div class="row">
+	<div class="mx-auto">
+		<form action="/posts/<%=post._id%>" method="POST">
+			<textarea type="text" name="body" placeholder="thoughts?"></textarea><br>
+			<button>Comment</button>
+	
+		</form>
+		</div>
+	</div>
+</div>
 
 <%- include ../partials/footer.ejs%>

@@ -1,3 +1,72 @@
 /*body {
 	background-color: #005596;
 }*/
+
+.bub > div {
+	width: 70%;
+}
+
+#speech-bubble {
+	position: relative;
+	background: #91bb5e;
+	border-radius: .4em;
+	margin-left: 0px;
+}
+
+#speech-bubble:after {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 100%;
+	width: 0;
+	height: 0;
+	border: 11px solid transparent;
+	border-right-color: #91bb5e;
+	border-left: 0;
+	border-bottom: 0;
+	margin-top: -13.5px;
+	margin-left: -5px;
+
+	list-style-type:none; 
+	text-overflow: wrap; 
+	word-wrap:break-word; 
+}
+
+
+#speech-bubble2 {
+	position: relative;
+	background: #bb3600;
+	border-radius: .4em;
+	margin-right: 0px;
+}
+
+#speech-bubble2:after {
+	content: '';
+	position: absolute;
+	right: 0;
+	top: 100%;
+	width: 0;
+	height: 0;
+	border: 13px solid transparent;
+	border-left-color: #bb3600;
+	border-right: 0;
+	border-bottom: 0;
+	margin-top: -13.5px;
+	margin-right: -5px;
+
+
+
+	list-style-type:none; 
+	text-overflow: wrap; 
+	word-wrap:break-word; 
+	float:right;
+}
+
+#makeButtonSmaller {
+	height: 20px;
+	width: 50px;
+	font-size: 12px;
+	text-align: center;
+	border-radius: 4px;
+	background-color: red
+}

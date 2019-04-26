@@ -37,9 +37,14 @@
 <div class="h4 text-center">
 	<a href="/topics/<%=topic._id%>/new">Create New Post</a>
 </div>
-	<%if(user.super === true) {%>
 
-	<h2><a href="/topics/<%=topic._id%>/edit">EDIT TOPIC</h2></a>
+
+	<%if(user.super === true) {%>
+	<div class="h5 text-center">
+		<a href="/topics/<%=topic._id%>/edit">
+			EDIT TOPIC
+		</a>
+	</div>
 
 	<%}%>
 
