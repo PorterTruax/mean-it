@@ -3,9 +3,12 @@ const router = express.Router();
 const User = require('../models/user')
 const Topic = require('../models/topic')
 const Post = require('../models/post')
-
-
 const Comment = require('../models/comment')
+
+
+
+
+
 
 router.post('/:id', async(req,res) => {
 
@@ -30,6 +33,7 @@ router.post('/:id', async(req,res) => {
 		await foundUser.save()
 	
 		await foundPost.save()
+		
 	
 	
 		res.redirect('/posts/' + req.params.id);
@@ -110,6 +114,20 @@ router.delete('/:id', async(req,res) => {
 
 	}catch(err) {
 		res.send(err)
+	}
+})
+
+
+router.get('/:id/photo', async(req,res,next)=>{
+	try{
+	const foundPost = await Post.findById(req.params.id)
+	console.log(foundPost);
+
+	res.set('Content-Type', foundPost.img.contentType)
+	res.send(foundPost.img.data)
+
+	}catch(err){
+		next(err)
 	}
 })
 

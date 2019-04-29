@@ -13,8 +13,10 @@
 		by <a href="/users/<%=author._id%>"><%=author.name%></a>
 	</div>
 
+	<img src="/posts/<%=post._id%>/photo" id="postPhoto">
+
 <div class="p-3 mt-0">
-	<div class="p-4">
+	<div class="p-4 text-center">
 	<article>
 		<%=post.body%>
 	</article>
@@ -26,10 +28,9 @@
 	<a href="/posts/<%=post._id%>/edit">Edit Post</a>
 
 		<%}%>
-
 <div class="container">
 	<div class="row">
-		<ul class="list-group text-center w-100 list-group-flush">
+		<ul class=" list-group text-center w-100 list-group-flush">
 			<%post.comments.forEach((comment, i) => { %>
 
 			<%if (i%2 === 0) {%>

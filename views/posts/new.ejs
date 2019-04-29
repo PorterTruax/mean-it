@@ -17,7 +17,7 @@
 						</div>
 					</div>
 
-					<form action="/topics/<%=topic._id%>" method="POST" class="text-center p-1">
+					<form action="/topics/<%=topic._id%>" method="POST" class="text-center p-1" enctype="multipart/form-data">
 			
 			
 					Name: <input type="text" name="name" class="d-block mx-auto">
@@ -27,6 +27,8 @@
 					Date: <input type="date" name="date" class="d-block mx-auto">
 
 					Post: <br><textarea name="body" placeholder="What do you want to say?" class="w-75"></textarea>
+
+					img: <input type="file" name="img" class="form-control" id="photoInput"><br>
 			
 					<button class="mt-1 d-block mx-auto bg-warning">Create Post</button>
 					</form>

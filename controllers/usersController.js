@@ -38,7 +38,7 @@ router.post('/register', upload.single('img'), async (req,res, next) => {
 //USE FIMULTER TO READ AND  ENCODE FILE
 	const img = fs.readFileSync(req.file.path);
 
-	// const encode_image = img.toString('base64');
+
 
 	const finalImg = {
 		contentType: req.file.mimetype,

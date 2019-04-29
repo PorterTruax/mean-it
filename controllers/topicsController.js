@@ -191,6 +191,7 @@ router.get('/:id/edit', async (req,res) => {
 //CREATE NEW POST ROUTE.....
 
 router.get('/:id/new', async(req,res) => {
+
 	
 	const foundTopic = await Topic.findOne({_id: req.params.id})
 	const foundUser = await User.findById(req.session.usersDbId)
@@ -206,10 +207,36 @@ router.get('/:id/new', async(req,res) => {
 // FIRST BUILD A NEW PAGE FOR THE TOPIC ID
 
 // BUILD A POST ROUTE FOR THE POST TO BE POSTED TO THE TOPIC
-router.post('/:id', async (req,res) => {
+const multer = require('multer')
+const fs = require('fs')
+const storage = multer.diskStorage({
+	destination:function (req,file, cb) {
+		cb(null, './client/uploads')
+	}, 
+	filename: function (req,file, cb){
+		cb(null, file.fieldname+ '-' + Date.now())
+	}
+})
+
+const upload = multer({storage: storage});
+
+router.post('/:id', upload.single('img'), async (req,res) => {
+	const postDbEntry = {};
+	const img = fs.readFileSync(req.file.path);
+
+	const finalImg = {
+		contentType: req.file.mimetype,
+		data: img
+	};
+	
+	postDbEntry.name = req.body.name
+	postDbEntry.date = req.body.date
+	postDbEntry.body = req.body.body
+	postDbEntry.img = finalImg
+
 	try {
 
-		const createdPost = await Post.create(req.body)
+		const createdPost = await Post.create(postDbEntry)
 		// console.log(createdPost + "<==== this is the created post");
 
 		const foundTopic = await Topic.findById(req.params.id)
