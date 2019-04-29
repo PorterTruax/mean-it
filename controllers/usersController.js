@@ -101,5 +101,14 @@ router.get('/logout', async(req,res)=>{
 	})
 })
 
+router.get('/:id' async(req,res)=>{
+	const foundUser = await User.findById(req.params.id).populate('posts').populate('comments');
+	console.log("this is the usert with all posts and comments populated");
+	console.log(foundUser);
+})
+
+
+
+
 //exportRouter
 module.exports = router
