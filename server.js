@@ -4,7 +4,8 @@ const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const session = require('express-session')
 const sharp = require('sharp')
-
+const morgan = require('morgan')
+const multer = require('multer')
 //require db
 require ('./db/db.js')
 
@@ -17,8 +18,6 @@ const commentsController = require('./controllers/commentsController')
 
 
 
-
-
 //middleware
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(methodOverride('_method'));
@@ -27,6 +26,7 @@ app.use(session({
 	resave: false,
 	saveUninitialized: false
 }))
+app.use(morgan('dev'));
 
 app.use(express.static(__dirname+ '/client'))
 

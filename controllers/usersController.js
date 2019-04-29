@@ -3,12 +3,30 @@ const router = express.Router();
 const User = require('../models/user')
 const bcrypt = require('bcryptjs');
 
+
+
+//use Multer to set up file storage destination (this is also set up in the server file)
+
+const multer = require('multer')
+const fs = require('fs')
+const storage = multer.diskStorage({
+	destination:function (req,file, cb) {
+		cb(null, './client/uploads')
+	}, 
+	filename: function (req,file, cb){
+		cb(null, file.fieldname+ '-' + Date.now())
+	}
+})
+
+const upload = multer({storage: storage});
+
+
 //GET LOGIN PAGE
 router.get('/login', async (req, res) => {
 	res.render('login.ejs')
 })
 //REGISTER ROUTER
-router.post('/register', async (req,res) => {
+router.post('/register', upload.single('img'), async (req,res, next) => {
 
 	const password = req.body.password;
 
@@ -16,11 +34,22 @@ router.post('/register', async (req,res) => {
 
 	const userDbEntry = {};
 
+
+//USE FIMULTER TO READ AND  ENCODE FILE
+	const img = fs.readFileSync(req.file.path);
+
+	// const encode_image = img.toString('base64');
+
+	const finalImg = {
+		contentType: req.file.mimetype,
+		data: img
+	};
+
 	userDbEntry.name = req.body.name
 	userDbEntry.password = passwordHash
-	userDbEntry.img = req.body.img
+	userDbEntry.img = finalImg
 
-	// console.log(userDbEntry + "<====== user db to be created");
+	console.log(userDbEntry + "<====== user db to be created");
 
 	try {
 		const createdUser = await User.create(userDbEntry)
@@ -30,7 +59,7 @@ router.post('/register', async (req,res) => {
 		//this if/else statement isn't happening, we'd like it too
 		if((createdUser.name === "Porter") || (createdUser.name ==="Jacob")){
 			createdUser.super = true
-			createdUser.save()
+			await createdUser.save()
 
 			console.log(createdUser);
 
@@ -51,7 +80,7 @@ router.post('/register', async (req,res) => {
 		}
 
 	}catch (err) {
-		res.send(err)
+		next(err)
 	}
 
 })
@@ -86,7 +115,7 @@ router.post('/login', async (req,res) => {
 		}
 
 	} catch (err){
-		res.send(err)
+		next(err)
 	}
 })
 
@@ -98,6 +127,22 @@ router.get('/logout', async(req,res)=>{
 			res.redirect('/users/login')
 		}
 	})
+})
+
+
+router.get('/:id/photo', async (req, res, next) => {
+	try {
+		foundUser = await User.findById(req.params.id)
+
+		res.set('Content-Type', foundUser.img.contentType)
+		res.send(foundUser.img.data)
+
+	}
+	catch(err){
+		next(err)
+
+	}
+
 })
 
 router.get('/:id', async (req,res)=>{

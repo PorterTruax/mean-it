@@ -9,7 +9,10 @@ const Comment = require('./comment')
 const userSchema = new mongoose.Schema({
 	name: {type: String, unique: true, required: true},
 	password: {type:String, required: true},
-	img: {type: String},
+	img: {
+			data: Buffer, 
+			contentType: String
+	},
 	super: false,
 	posts: [{
 		type: mongoose.Schema.Types.ObjectId,
