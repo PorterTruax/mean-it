@@ -16,6 +16,8 @@ const commentsController = require('./controllers/commentsController')
 
 
 
+
+
 //middleware
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(methodOverride('_method'));
@@ -27,10 +29,23 @@ app.use(session({
 
 app.use(express.static(__dirname+ '/client'))
 
+
 app.use('/users', usersController)
+
+
+app.use((req,res, next) => {
+	if (!req.session.logged) {
+		res.redirect('/users/login')
+	} else{
+		next()
+	}
+})
+
 app.use('/topics', topicsController)
 app.use('/posts', postsController)
 app.use('/comments', commentsController)
+
+
 
 //get app running
 app.listen(3000, () => {

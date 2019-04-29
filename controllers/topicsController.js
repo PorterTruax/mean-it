@@ -11,8 +11,10 @@ const Post = require('../models/post')
 // })
 
 
+
+
 //GET INDEX ROUTE
-router.get('/', async (req,res)=> {
+router.get('/', async (req,res, next)=> {
 
 	try{
 		const foundUser = await User.findOne({_id: req.session.usersDbId})
@@ -37,7 +39,7 @@ router.get('/', async (req,res)=> {
 		}
 
 	} catch(err){
-		res.send(err)
+		next(err)
 	}
 })
 
