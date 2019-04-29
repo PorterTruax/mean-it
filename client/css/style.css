@@ -13,6 +13,11 @@
 	max-width: 800px;
 }
 
+#topicPhoto{
+	max-height: 300px;
+	max-width: 800px;
+}
+
 body {
 	font-family:'Oswald', sans-serif;
 }

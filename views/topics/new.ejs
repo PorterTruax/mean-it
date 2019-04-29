@@ -2,11 +2,11 @@
 
 	<h1> Create a new topic</h1>
 
-	<form action="/topics" method="POST">
+	<form action="/topics" method="POST" enctype="multipart/form-data">
 
 		Name:<input type="text" name="name" /><br>
 		Date:<input type="date" name="date" /><br>
-		Img:<input type="text" name="img" /><br>
+		Img:<input type="file" name="img" /><br>
 		Author:<input type="text" name="author" value="<%=user.name%>" /><br>
 		Topic: <br>
 		<textarea name="body" placeholder="What are we talking about?"></textarea><br/>

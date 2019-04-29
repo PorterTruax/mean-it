@@ -4,16 +4,22 @@
 	<%=topic.name%><br>
 </div>
 
+
+
 	<div class="text-center h3" style="text-decoration: underline">
 		What are we talking about?
+	</div>
+
+	<div class="container">
+		<div class="row">
+			<img src="/topics/<%=topic._id%>/photo" id="topicPhoto" class="mx-auto">
+		</div>
 	</div>
 	
 	<div class="text-center h6">
 		
 		<%=topic.body%>
 	</div>
-
-
 
 
 <div class="container">

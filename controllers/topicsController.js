@@ -4,11 +4,21 @@ const User = require('../models/user')
 const Topic = require('../models/topic')
 const Post = require('../models/post')
 
-// router.use((req,res,next) => {
-// 	if(!req.session.loggedIn) {
-// 		res.redirect('/')
-// 	}
-// })
+
+//use Multer to set up file storage destination (this is also set up in the server file)
+
+const multer = require('multer')
+const fs = require('fs')
+const storage = multer.diskStorage({
+	destination:function (req,file, cb) {
+		cb(null, './client/uploads')
+	}, 
+	filename: function (req,file, cb){
+		cb(null, file.fieldname+ '-' + Date.now())
+	}
+})
+
+const upload = multer({storage: storage});
 
 
 
@@ -45,13 +55,28 @@ router.get('/', async (req,res, next)=> {
 
 
 //POST NEW ITEM
-router.post('/', async(req,res) => {
+router.post('/', upload.single('img'), async(req,res) => {
 	//our post route needs to create a topic
+	const topicToBe = {};
+
+	const img = fs.readFileSync(req.file.path);
+	const finalImg = {
+		contentType: req.file.mimetype,
+		data: img
+	};
+
+	topicToBe.name = req.body.name
+	topicToBe.date = req.body.date
+	topicToBe.body = req.body.body
+	topicToBe.img = finalImg
+
+	console.log(topicToBe);
+
 	try{
 
 		const foundUser = await User.findOne({_id: req.session.usersDbId})
 
-		const createdTopic = await Topic.create(req.body)
+		const createdTopic = await Topic.create(topicToBe)
 
 		console.log(createdTopic);
 
@@ -207,18 +232,6 @@ router.get('/:id/new', async(req,res) => {
 // FIRST BUILD A NEW PAGE FOR THE TOPIC ID
 
 // BUILD A POST ROUTE FOR THE POST TO BE POSTED TO THE TOPIC
-const multer = require('multer')
-const fs = require('fs')
-const storage = multer.diskStorage({
-	destination:function (req,file, cb) {
-		cb(null, './client/uploads')
-	}, 
-	filename: function (req,file, cb){
-		cb(null, file.fieldname+ '-' + Date.now())
-	}
-})
-
-const upload = multer({storage: storage});
 
 router.post('/:id', upload.single('img'), async (req,res) => {
 	const postDbEntry = {};
@@ -269,6 +282,21 @@ router.post('/:id', upload.single('img'), async (req,res) => {
 		res.send(err)
 	}
 
+})
+
+//image link
+router.get('/:id/photo', async (req,res, next) => {
+	try{
+
+		const foundTopic = await Topic.findById(req.params.id)
+		console.log(foundTopic);
+
+		res.set('Content-Type', foundTopic.img.contentType)
+		res.send(foundTopic.img.data)
+
+	} catch(err) {
+		next(err)
+	}
 })
 
 

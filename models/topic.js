@@ -5,7 +5,10 @@ const Post = require('./post')
 const topicSchema = new mongoose.Schema({
 	name: {type: String, required: true, unique: true},
 	date: {type: Date, required: true},
-	img: {type: String, required: true},
+	img:{
+			data: Buffer, 
+			contentType: String
+	},
 	author: {type: String},
 	body: {type: String, required: true},
 	posts: [{
