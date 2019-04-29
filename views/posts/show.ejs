@@ -13,7 +13,9 @@
 		by <a href="/users/<%=author._id%>"><%=author.name%></a>
 	</div>
 
-	<img src="/posts/<%=post._id%>/photo" id="postPhoto">
+	<div class="text-center">
+		<img src="/posts/<%=post._id%>/photo" id="postPhoto" class="mx-auto">
+	</div>
 
 <div class="p-3 mt-0">
 	<div class="p-4 text-center">
@@ -25,7 +27,9 @@
 
 	<%if (user.super === true) {%>
 
-	<a href="/posts/<%=post._id%>/edit">Edit Post</a>
+	<div class="text-center">
+		<a href="/posts/<%=post._id%>/edit">Edit Post</a>
+	</div>
 
 		<%}%>
 <div class="container">
