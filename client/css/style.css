@@ -18,6 +18,13 @@
 	max-width: 800px;
 }
 
+#topicListPhoto {
+	max-height: 100px;
+	max-width: 100px;
+	float:right;
+	padding: 10px;
+}
+
 body {
 	font-family:'Oswald', sans-serif;
 }

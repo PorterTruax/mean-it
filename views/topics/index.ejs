@@ -10,6 +10,12 @@
 					<li class="list-group-item-info list-group-item-action col-6 border border-dark" style="list-style-type:none"><a href="topics/<%=topic._id%>" class="text-danger" style="text-decoration: none"><%=	topic.name%>
 					<br>
 					<p class="text-success"><%=topic.body%></p>
+					
+					<div class="container">
+
+						<img src="/topics/<%=topic._id%>/photo" id="topicListPhoto">
+					</div>
+					
 					</li>
 					</a>
 			<% })%>
