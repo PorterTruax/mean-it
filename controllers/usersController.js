@@ -101,14 +101,19 @@ router.get('/logout', async(req,res)=>{
 	})
 })
 
-router.get('/:id' async(req,res)=>{
-	const foundUser = await User.findById(req.params.id).populate('posts').populate('comments');
-	console.log("this is the usert with all posts and comments populated");
-	console.log(foundUser);
+router.get('/:id', async (req,res)=>{
+	try{
+	const foundUser = await User.findById(req.params.id).populate('posts').populate('comments') 
+	res.render('users/show.ejs',{
+		User: foundUser
+	})
+	}catch(err){
+		res.send(err)
+	}
+	// console.log("This is the user with all posts/coms populated");
+	// console.log(foundUser);
+
 })
-
-
-
 
 //exportRouter
 module.exports = router
