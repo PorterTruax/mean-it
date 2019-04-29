@@ -3,31 +3,34 @@
 <head>
 	<title></title>
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.css">
+	<link href="https://fonts.googleapis.com/css?family=Oswald|Roboto" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-info">
+<!-- <nav class="navbar navbar-expand-xl navbar-light bg-info">
   <a class="navbar-brand bg-danger rounded px-2 "href="/topics">Mean It</a>
 
-  <div class="text-center text-warning font-italic h4">
+  <div class="navbar-text text-center text-warning font-italic h4">
   	"Where the internet acts like it should"
   </div>
  
-  <button class="bg-warning rounded" type="button">
+  <button class="navbar-button bg-warning rounded" type="button">
     <a href="/users/logout" class="text-danger">Logout</a>
   </button>
-
 </nav>
-
-
-
-
-<!-- 	<nav>
-		<ul>
-			<li><a href="/topics">Topics Home</a></li>
-			<li><a href="/users/logout">Logout</a></li>
-		</ul>
-
-	</nav>
  -->
+
+ <nav class="navbar navbar-expand-lg bg-info">
+  <a class="navbar-brand bg-danger rounded px-2" href="/topics">Mean It</a>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav mr-auto">
+        <li> <a class="text-warning" href="/users/logout">Logout</li></a>
+      </ul>
+      <span class="navbar-text text-warning font-italic">
+        Where the Internet Acts like It Should
+      </span>
+    </div>
+  </nav>
+
+

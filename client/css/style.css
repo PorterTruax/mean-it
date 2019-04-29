@@ -1,7 +1,31 @@
-/*body {
-	background-color: #005596;
-}*/
+#postName {
+    font-family: 'Oswald', sans-serif;
+    font-weight: bold;
+}
 
+body {
+	font-family:'Oswald', sans-serif;
+}
+
+#topicHeadline {
+    font-family: 'Oswald', sans-serif;
+    font-weight: bold;
+}
+
+a {
+    font-family: 'Roboto', sans-serif;
+}
+
+article {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 200
+}
+
+li {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400
+
+}
 .bub > div {
 	width: 70%;
 }
