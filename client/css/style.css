@@ -11,11 +11,15 @@
 #postPhoto {
 	max-height: 300px;
 	max-width: 800px;
+	border-radius: 5px;
+	border: 5px solid white;
 }
 
 #topicPhoto{
 	max-height: 300px;
 	max-width: 800px;
+	border-radius: 5px;
+	border: 5px solid white;
 }
 
 #topicListPhoto {
@@ -27,6 +31,7 @@
 
 body {
 	font-family:'Oswald', sans-serif;
+	background-image: url(http://www.sadiegreens.com/wp-content/uploads/2014/10/TQP-274.jpg);
 }
 
 #topicHeadline {
@@ -36,6 +41,7 @@ body {
 
 a {
     font-family: 'Roboto', sans-serif;
+    color: white;
 }
 
 article {
@@ -68,7 +74,7 @@ footer {
 
 #speech-bubble {
 	position: relative;
-	background: #91bb5e;
+	background: #292b2c;
 	border-radius: .4em;
 	margin-left: 0px;
 }
@@ -81,7 +87,7 @@ footer {
 	width: 0;
 	height: 0;
 	border: 11px solid transparent;
-	border-right-color: #91bb5e;
+	border-right-color: #292b2c;
 	border-left: 0;
 	border-bottom: 0;
 	margin-top: -13.5px;
@@ -95,7 +101,7 @@ footer {
 
 #speech-bubble2 {
 	position: relative;
-	background: #bb3600;
+	background: #ffc400;
 	border-radius: .4em;
 	margin-right: 0px;
 }
@@ -108,7 +114,7 @@ footer {
 	width: 0;
 	height: 0;
 	border: 13px solid transparent;
-	border-left-color: #bb3600;
+	border-left-color: #ffc400;
 	border-right: 0;
 	border-bottom: 0;
 	margin-top: -13.5px;
