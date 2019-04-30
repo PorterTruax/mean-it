@@ -132,7 +132,7 @@ router.get('/logout', async(req,res)=>{
 
 router.get('/:id/photo', async (req, res, next) => {
 	try {
-		foundUser = await User.findById(req.params.id)
+		const foundUser = await User.findById(req.params.id)
 
 		res.set('Content-Type', foundUser.img.contentType)
 		res.send(foundUser.img.data)
