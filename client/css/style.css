@@ -6,6 +6,7 @@ body {
 #headline {
     color: white;
     font-size: 90px;
+    font-family: 'Oswald', sans-serif;
 }
 
 #loginBackground {
@@ -47,6 +48,7 @@ body {
 #topicHeadline {
     font-family: 'Oswald', sans-serif;
     font-weight: bold;
+    color:white;
 }
 
 a {
