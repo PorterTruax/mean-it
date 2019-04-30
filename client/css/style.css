@@ -1,3 +1,8 @@
+.footer-margin{
+	height:100px;
+}
+
+
 #postName {
     font-family: 'Oswald', sans-serif;
     font-weight: bold;
@@ -49,14 +54,6 @@ li {
 
 }
 
-
-html, body {
-  height: 100%;
-}
-
-footer {
-  position: relative;
-} 
 
 .bub > div {
 	width: 70%;

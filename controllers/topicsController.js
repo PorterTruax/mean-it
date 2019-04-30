@@ -152,9 +152,7 @@ router.put('/:id', async (req,res) => {
 
 	const updatedName = req.body.name
 	console.log(req.body.name);
-	const updatedImg = req.body.img
 
-	console.log(req.body.img);
 	const updatedDate = req.body.date
 
 	console.log(req.body.date);
@@ -172,8 +170,6 @@ router.put('/:id', async (req,res) => {
 		foundTopic.author = updatedAuthor
 
 		foundTopic.name = updatedName
-
-		foundTopic.img = updatedImg
 
 		// foundTopic.date = updatedDate
 
