@@ -1,3 +1,18 @@
+body {
+    background-image: url(http://www.sadiegreens.com/wp-content/uploads/2014/10/TQP-274.jpg);
+    font-family:'Oswald', sans-serif;
+}
+
+#headline {
+    color: white;
+    font-size: 90px;
+}
+
+#loginBackground {
+    background-image: url(http://www.sadiegreens.com/wp-content/uploads/2014/10/TQP-274.jpg);
+}
+
+
 #postName {
     font-family: 'Oswald', sans-serif;
     font-weight: bold;
@@ -27,11 +42,6 @@
     max-width: 100px;
     float:right;
     padding: 10px;
-}
-
-body {
-    font-family:'Oswald', sans-serif;
-    background-image: url(http://www.sadiegreens.com/wp-content/uploads/2014/10/TQP-274.jpg);
 }
 
 #topicHeadline {
