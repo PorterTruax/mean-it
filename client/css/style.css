@@ -4,35 +4,35 @@
 }
 
 #profilePhoto {
-	max-height: 300px;
-	max-width: 800px;
+    max-height: 300px;
+    max-width: 800px;
 }
 
 #postPhoto {
-	max-height: 300px;
-	max-width: 800px;
-	border-radius: 5px;
-	border: 5px solid white;
+    max-height: 300px;
+    max-width: 800px;
+    border-radius: 5px;
+    border: 5px solid white;
 }
 
 #topicPhoto{
-	max-height: 300px;
-	max-width: 800px;
-	border-radius: 5px;
-	border: 5px solid white;
+    max-height: 300px;
+    max-width: 800px;
+    border-radius: 5px;
+    border: 5px solid white;
 }
 
 #topicListPhoto {
-	max-height: 100px;
-	max-width: 100px;
-	float:right;
-	padding: 10px;
+    max-height: 100px;
+    max-width: 100px;
+    float:right;
+    padding: 10px;
 }
 
 body {
-	font-family:'Oswald', sans-serif;
-	background-image: url(http://www.sadiegreens.com/wp-content/uploads/2014/10/TQP-274.jpg);
-
+    font-family:'Oswald', sans-serif;
+    background-image: url(http://www.sadiegreens.com/wp-content/uploads/2014/10/TQP-274.jpg);
+}
 
 #topicHeadline {
     font-family: 'Oswald', sans-serif;
@@ -65,74 +65,74 @@ footer {
 } 
 
 .bub > div {
-	width: 70%;
+    width: 70%;
 }
 
 #photoInput{
-	font-size: .5em;
+    font-size: .5em;
 }
 
 #speech-bubble {
-	position: relative;
-	background: #292b2c;
-	border-radius: .4em;
-	margin-left: 0px;
+    position: relative;
+    background: #292b2c;
+    border-radius: .4em;
+    margin-left: 0px;
 }
 
 #speech-bubble:after {
-	content: '';
-	position: absolute;
-	left: 0;
-	top: 100%;
-	width: 0;
-	height: 0;
-	border: 11px solid transparent;
-	border-right-color: #292b2c;
-	border-left: 0;
-	border-bottom: 0;
-	margin-top: -13.5px;
-	margin-left: -5px;
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 0;
+    height: 0;
+    border: 11px solid transparent;
+    border-right-color: #292b2c;
+    border-left: 0;
+    border-bottom: 0;
+    margin-top: -13.5px;
+    margin-left: -5px;
 
-	list-style-type:none; 
-	text-overflow: wrap; 
-	word-wrap:break-word; 
+    list-style-type:none; 
+    text-overflow: wrap; 
+    word-wrap:break-word; 
 }
 
 
 #speech-bubble2 {
-	position: relative;
-	background: #ffc400;
-	border-radius: .4em;
-	margin-right: 0px;
+    position: relative;
+    background: #ffc400;
+    border-radius: .4em;
+    margin-right: 0px;
 }
 
 #speech-bubble2:after {
-	content: '';
-	position: absolute;
-	right: 0;
-	top: 100%;
-	width: 0;
-	height: 0;
-	border: 13px solid transparent;
-	border-left-color: #ffc400;
-	border-right: 0;
-	border-bottom: 0;
-	margin-top: -13.5px;
-	margin-right: -5px;
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 100%;
+    width: 0;
+    height: 0;
+    border: 13px solid transparent;
+    border-left-color: #ffc400;
+    border-right: 0;
+    border-bottom: 0;
+    margin-top: -13.5px;
+    margin-right: -5px;
 
 
 
-	list-style-type:none; 
-	text-overflow: wrap; 
-	word-wrap:break-word; 
-	float:right;
+    list-style-type:none; 
+    text-overflow: wrap; 
+    word-wrap:break-word; 
+    float:right;
 }
 
 #makeButtonSmaller {
-	height: 20px;
-	width: 50px;
-	font-size: 12px;
-	text-align: center;
-	border-radius: 4px;
-	background-color: red
+    height: 20px;
+    width: 50px;
+    font-size: 12px;
+    text-align: center;
+    border-radius: 4px;
+    background-color: red
 }

@@ -3,89 +3,89 @@
 
 
 <div class="container">
-	<div class="h2 text-center mb-0" id="postName">
-		<%=post.name%>
-	</div>
+    <div class="h2 text-center mb-0" id="postName">
+        <%=post.name%>
+    </div>
 </div>
 
 
-	<div class="h6 text-center mb-0">
-		by <a href="/users/<%=author._id%>"><%=author.name%></a>
-	</div>
+    <div class="h6 text-center mb-0">
+        by <a href="/users/<%=author._id%>"><%=author.name%></a>
+    </div>
 
-	<div class="text-center">
-		<img src="/posts/<%=post._id%>/photo" id="postPhoto" class="mx-auto">
-	</div>
+    <div class="text-center">
+        <img src="/posts/<%=post._id%>/photo" id="postPhoto" class="mx-auto">
+    </div>
 
 <div class="p-3 mt-0">
-	<div class="p-4 text-center text-light h5">
-	<article>
-		<%=post.body%>
-	</article>
-	</div>
+    <div class="p-4 text-center text-light h5">
+    <article>
+        <%=post.body%>
+    </article>
+    </div>
 </div>
 
-	<%if (user.super === true) {%>
+    <%if (user.super === true) {%>
 
-	<div class="text-center">
-		<a href="/posts/<%=post._id%>/edit">Edit Post</a>
-	</div>
+    <div class="text-center">
+        <a href="/posts/<%=post._id%>/edit">Edit Post</a>
+    </div>
 
-		<%}%>
+        <%}%>
 <div class="container">
-	<div class="row">
-		<ul class=" list-group text-center w-100 list-group-flush">
-			<%post.comments.forEach((comment, i) => { %>
+    <div class="row">
+        <ul class=" list-group text-center w-100 list-group-flush">
+            <%post.comments.forEach((comment, i) => { %>
 
-			<%if (i%2 === 0) {%>
-				<li style="list-style-type:none;" class="bub">
-					<div class="list-group-item-info my-2 rounded" id="speech-bubble" style="float:left">
-					
-						<div class="text-warning"><%=comment.author%>:</div> "<%=comment.body%>"
-					
-					</div>
-				</li>
-	
-				<%}%>
+            <%if (i%2 === 0) {%>
+                <li style="list-style-type:none;" class="bub">
+                    <div class="list-group-item-info my-2 rounded" id="speech-bubble" style="float:left">
+                    
+                        <div class="text-warning"><%=comment.author%>:</div> "<%=comment.body%>"
+                    
+                    </div>
+                </li>
+    
+                <%}%>
 
-			<%if (i%2 !== 0) { %>
+            <%if (i%2 !== 0) { %>
 
-				<li style="list-style-type:none;" class="bub">
+                <li style="list-style-type:none;" class="bub">
 
-				
-					<div class="list-group-item-info my-2 rounded bub" id="speech-bubble2" style="float:right">
-						
-						<div class="text-dark"><%=comment.author%>:</div> "<%=comment.body%>"
-						
-					</div>	
-				</li>
+                
+                    <div class="list-group-item-info my-2 rounded bub" id="speech-bubble2" style="float:right">
+                        
+                        <div class="text-dark"><%=comment.author%>:</div> "<%=comment.body%>"
+                        
+                    </div>    
+                </li>
 
-			<%}%>
+            <%}%>
 
 
-				<%if(user.super === true) {%>
+                <%if(user.super === true) {%>
 
-					<form action="/comments/<%=comment._id%>?_method=DELETE" method="POST">
-						<button id="makeButtonSmaller">Delete</button>
-					</form>
-					
-					<%}%>
-		
-			<%})%>
-		</ul>
-	</div>
+                    <form action="/comments/<%=comment._id%>?_method=DELETE" method="POST">
+                        <button id="makeButtonSmaller">Delete</button>
+                    </form>
+                    
+                    <%}%>
+        
+            <%})%>
+        </ul>
+    </div>
 </div>
 
 <div class="container">
-	<div class="row">
-	<div class="mx-auto">
-		<form action="/posts/<%=post._id%>" method="POST">
-			<textarea type="text" name="body" placeholder="thoughts?"></textarea><br>
-			<button>Comment</button>
-	
-		</form>
-		</div>
-	</div>
+    <div class="row">
+    <div class="mx-auto">
+        <form action="/posts/<%=post._id%>" method="POST">
+            <textarea type="text" name="body" placeholder="thoughts?"></textarea><br>
+            <button>Comment</button>
+    
+        </form>
+        </div>
+    </div>
 </div>
 
 <%- include ../partials/footer.ejs%>

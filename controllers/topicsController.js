@@ -171,10 +171,6 @@ router.put('/:id', async (req,res) => {
 
 		foundTopic.name = updatedName
 
-		foundTopic.img = updatedImg
-
-		// foundTopic.date = updatedDate
-
 		foundTopic.body = updatedBody
 
 		const savedTopic = await foundTopic.save()
