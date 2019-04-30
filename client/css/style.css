@@ -48,6 +48,16 @@ li {
     font-weight: 400
 
 }
+
+
+html, body {
+  height: 100%;
+}
+
+footer {
+  position: relative;
+} 
+
 .bub > div {
 	width: 70%;
 }
