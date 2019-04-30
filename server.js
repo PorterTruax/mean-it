@@ -6,6 +6,9 @@ const session = require('express-session')
 const sharp = require('sharp')
 const morgan = require('morgan')
 const multer = require('multer')
+require('dotenv').config()
+
+
 //require db
 require ('./db/db.js')
 
@@ -16,13 +19,13 @@ const topicsController = require('./controllers/topicsController')
 const postsController = require('./controllers/postsController')
 const commentsController = require('./controllers/commentsController')
 
-
+const PORT = process.env.PORT
 
 //middleware
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(methodOverride('_method'));
 app.use(session({
-	secret:"SDFASDfe3kfrDFASDFASDFkdsf23123",
+	secret:process.env.SESSION_SECRET,
 	resave: false,
 	saveUninitialized: false
 }))
@@ -49,6 +52,6 @@ app.use('/comments', commentsController)
 
 
 //get app running
-app.listen(3000, () => {
-	console.log('app is listening on port: ', 3000);
+app.listen(PORT, () => {
+	console.log('app is listening on port: ', PORT);
 })
