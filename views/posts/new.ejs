@@ -1,7 +1,7 @@
 <%- include ../partials/header.ejs%>
 
 	<div class="container">
-		<div class="h1 text-center text-success">	
+		<div class="h1 text-center text-dark">	
 			Create New Post
 		</div>
 	</div>
@@ -20,7 +20,7 @@
 
 					<form action="/topics/<%=topic._id%>" method="POST" class="text-center p-1" enctype="multipart/form-data">
 
-						<div class="text-danger font-italic"><%=errorMessage%></div>
+					<div class="text-danger font-italic"><%=errorMessage%></div>
 			
 					Name: <input type="text" name="name" class="d-block mx-auto">
 
@@ -28,9 +28,9 @@
 
 					Date: <input type="date" name="date" class="d-block mx-auto" id="today">
 
-					Post: <br><textarea name="body" placeholder="What do you want to say?" class="w-75"></textarea>
+					Post: <br><textarea name="body" placeholder="What do you want to say?" class="w-75"></textarea><br>
 
-					img: <input type="file" name="img" class="form-control" id="photoInput"><br>
+					Image: <input type="file" name="img" class="form-control" id="photoInput"><br>
 			
 					<button class="mt-1 d-block mx-auto bg-warning">Create Post</button>
 					</form>
