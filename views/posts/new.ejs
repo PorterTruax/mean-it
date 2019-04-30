@@ -17,8 +17,10 @@
 						</div>
 					</div>
 
+
 					<form action="/topics/<%=topic._id%>" method="POST" class="text-center p-1" enctype="multipart/form-data">
-			
+
+						<div class="text-danger font-italic"><%=errorMessage%></div>
 			
 					Name: <input type="text" name="name" class="d-block mx-auto">
 

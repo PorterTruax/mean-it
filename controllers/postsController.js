@@ -33,8 +33,6 @@ router.post('/:id', async(req,res) => {
 		await foundUser.save()
 	
 		await foundPost.save()
-		
-	
 	
 		res.redirect('/posts/' + req.params.id);
 		

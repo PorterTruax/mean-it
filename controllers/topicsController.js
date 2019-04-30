@@ -217,7 +217,8 @@ router.get('/:id/new', async(req,res) => {
 
 	res.render('posts/new.ejs', {
 		topic: foundTopic,
-		author: foundUser.name
+		author: foundUser.name,
+		errorMessage: req.session.message
 	})
 })
 
@@ -226,7 +227,6 @@ router.get('/:id/new', async(req,res) => {
 // FIRST BUILD A NEW PAGE FOR THE TOPIC ID
 
 // BUILD A POST ROUTE FOR THE POST TO BE POSTED TO THE TOPIC
-
 router.post('/:id', upload.single('img'), async (req,res) => {
 	const postDbEntry = {};
 	const img = fs.readFileSync(req.file.path);
@@ -243,34 +243,39 @@ router.post('/:id', upload.single('img'), async (req,res) => {
 
 	try {
 
-		const createdPost = await Post.create(postDbEntry)
-		// console.log(createdPost + "<==== this is the created post");
+		if(postDbEntry.name && postDbEntry.date && postDbEntry.body && postDbEntry.img){
+			
 
-		const foundTopic = await Topic.findById(req.params.id)
-		// console.log(foundTopic + "<=== this is the found topic where the posts belongs")
+			const createdPost = await Post.create(postDbEntry)
+			// console.log(createdPost + "<==== this is the created post");
 
-		const foundUser = await User.findById(req.session.usersDbId)
-		console.log(foundUser);
+			const foundTopic = await Topic.findById(req.params.id)
+			// console.log(foundTopic + "<=== this is the found topic where the posts belongs")
 
-		foundUser.posts.push(createdPost)
-		await foundUser.save()
+			const foundUser = await User.findById(req.session.usersDbId)
+			console.log(foundUser);
+
+			foundUser.posts.push(createdPost)
+			await foundUser.save()
 		
-		console.log("\n", "here is the user including the posts\n")
+			console.log("\n", "here is the user including the posts\n")
 			console.log(foundUser)
-
-		// console.log("\n\nhere is foundTopic:")
-		// console.log(foundTopic.posts)
 		
-		foundTopic.posts.push(createdPost)
-		// console.log("\nhere is foundTopic after we pshed")
+			foundTopic.posts.push(createdPost)
 
-		console.log(foundTopic)
+			console.log(foundTopic)
 
-		await foundTopic.save()
+			await foundTopic.save()
 
-		console.log(foundTopic + "<===== post pushed into the foundtopic");
+			console.log(foundTopic + "<===== post pushed into the foundtopic");
 
-		res.redirect('/topics/' + req.params.id)
+			res.redirect('/topics/' + req.params.id)
+		}
+
+		else {
+			req.session.message = "Please complete all required fields (date, name, image, and body)"
+			res.redirect('/topics/' +req.params.id+'/new')
+		}
 
 	} catch(err) {
 		res.send(err)

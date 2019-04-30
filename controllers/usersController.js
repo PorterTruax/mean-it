@@ -23,7 +23,9 @@ const upload = multer({storage: storage});
 
 //GET LOGIN PAGE
 router.get('/login', async (req, res) => {
-	res.render('login.ejs')
+	res.render('login.ejs', {
+		errorMessage: req.session.message
+	})
 })
 //REGISTER ROUTER
 router.post('/register', upload.single('img'), async (req,res, next) => {
@@ -80,7 +82,8 @@ router.post('/register', upload.single('img'), async (req,res, next) => {
 		}
 
 	}catch (err) {
-		next(err)
+		req.session.message = 'Username or Password is incorrect';
+		res.redirect('/users/login')
 	}
 
 })
@@ -107,10 +110,12 @@ router.post('/login', async (req,res) => {
 			}
 
 			else{
+				req.session.message = 'Username or Password is incorrect';
 				res.redirect('/users/login')
 			}
 
 		} else {
+			req.session.message = 'Username or Password is incorrect';
 			res.redirect('/users/login')
 		}
 
