@@ -36,7 +36,6 @@ app.use(express.static(__dirname+ '/client'))
 
 app.use('/users', usersController)
 
-
 app.use((req,res, next) => {
 	if (!req.session.logged) {
 		res.redirect('/users/login')
