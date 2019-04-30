@@ -39,7 +39,7 @@
 
             <%if (i%2 === 0) {%>
                 <li style="list-style-type:none;" class="bub">
-                    <div class="list-group-item-info my-2 rounded" id="speech-bubble" style="float:left">
+                    <div class="list-group-item-info my-2 rounded text-light" id="speech-bubble" style="float:left">
                     
                         <div class="text-warning"><%=comment.author%>:</div> "<%=comment.body%>"
                     
@@ -80,9 +80,8 @@
     <div class="row">
     <div class="mx-auto">
         <form action="/posts/<%=post._id%>" method="POST">
-            <textarea type="text" name="body" placeholder="thoughts?"></textarea><br>
+            <textarea type="text" name="body" cols="50"></textarea><br>
             <button>Comment</button>
-    
         </form>
         </div>
     </div>
