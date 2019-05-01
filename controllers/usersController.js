@@ -135,6 +135,23 @@ router.get('/logout', async(req,res)=>{
 })
 
 
+router.get('/:id', async (req,res)=>{
+	try{
+		
+		const foundUser = await User.findById(req.params.id).populate('posts').populate('comments') 
+		
+		res.render('users/show.ejs',{
+		User: foundUser
+	})
+	}catch(err){
+		res.send(err)
+	}
+	// console.log("This is the user with all posts/coms populated");
+	// console.log(foundUser);
+
+})
+
+
 router.get('/:id/photo', async (req, res, next) => {
 	try {
 		const foundUser = await User.findById(req.params.id)
@@ -147,20 +164,6 @@ router.get('/:id/photo', async (req, res, next) => {
 		next(err)
 
 	}
-
-})
-
-router.get('/:id', async (req,res)=>{
-	try{
-	const foundUser = await User.findById(req.params.id).populate('posts').populate('comments') 
-	res.render('users/show.ejs',{
-		User: foundUser
-	})
-	}catch(err){
-		res.send(err)
-	}
-	// console.log("This is the user with all posts/coms populated");
-	// console.log(foundUser);
 
 })
 
