@@ -2,13 +2,13 @@
 <body>
 	<div class="h1 text-center">
 		<u>
-		<%=User.name%>
+		<%=newlyFoundUser.name%>
 		</u>
 	</div>
 
 	<div class="container">
 		<div class="row">
-			<img src="/users/<%=User._id%>/photo" alt="there should be a picture here" id="profilePhoto" class="mx-auto">
+			<img src="/users/<%=newlyFoundUser._id%>/photo" alt="there should be a picture here" id="profilePhoto" class="mx-auto">
 		</div>
 	</div>
 
@@ -18,7 +18,7 @@
 	<div class="container">
 		<div class="row">
 			<ul class=" list-group text-center w-50 m-auto list-group-flush">
-				<%User.posts.forEach((post)=>{%>
+				<%newlyFoundUser.posts.forEach((post)=>{%>
 					<li style="list-style-type:none;" class="list-group-item-info list-group-item-action my-2"><a href="/posts/<%=post._id%>"><%=post.name%></a></li>
 				<%})%>
 			</ul>

@@ -141,7 +141,7 @@ router.get('/:id', async (req,res)=>{
 		const foundUser = await User.findById(req.params.id).populate('posts').populate('comments') 
 		
 		res.render('users/show.ejs',{
-		User: foundUser
+		newlyFoundUser: foundUser
 	})
 	}catch(err){
 		res.send(err)
