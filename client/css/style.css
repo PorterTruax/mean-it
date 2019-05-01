@@ -13,6 +13,10 @@ body {
     background-image: url(http://www.sadiegreens.com/wp-content/uploads/2014/10/TQP-274.jpg);
 }
 
+#unhider{
+    color:blue;
+}
+
 
 #postName {
     font-family: 'Oswald', sans-serif;
